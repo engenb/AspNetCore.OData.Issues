@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "Issue698_5_0_0_NotWorking": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "applicationUrl": "http://localhost:5100",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
