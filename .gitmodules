@@ -1,0 +1,6 @@
+[submodule "aspnet-api-versioning"]
+	path = aspnet-api-versioning
+	url = https://github.com/microsoft/aspnet-api-versioning.git
+[submodule "odata.net"]
+	path = odata.net
+	url = https://github.com/OData/odata.net.git
