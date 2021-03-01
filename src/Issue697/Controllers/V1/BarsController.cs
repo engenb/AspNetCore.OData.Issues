@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Issue697.Models;
 using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +14,24 @@ namespace Issue697.Controllers.V1
     [Produces("application/json")]
     public class BarsController : ODataController
     {
+        [HttpGet]
+        [ODataRoute("Bars"), EnableQuery]
+        [ProducesResponseType(typeof(ODataValue<IEnumerable<Bar>>), Status200OK)]
+        public IActionResult Get() => Ok(Array.Empty<Bar>());
+
+        [HttpGet]
+        [ODataRoute("Bars({id})"), EnableQuery]
+        [ProducesResponseType(typeof(ODataValue<Bar>), Status200OK)]
+        public IActionResult Get(Guid id) => NotFound();
+
         [HttpPost]
         [ODataRoute("Bars/Bulk")]
         [ProducesResponseType(typeof(ODataValue<IEnumerable<Bar>>), Status200OK)]
-        public IActionResult Bulk([FromBody] BulkIds bulk, ODataQueryOptions<Bar> options) => NoContent();
+        public IActionResult Bulk([FromBody] BulkIds bulk) => Ok(Array.Empty<Bar>());
+
+        [HttpPost]
+        [ODataRoute("Bars/Add")]
+        [ProducesResponseType(typeof(ODataValue<IEnumerable<Bar>>), Status200OK)]
+        public IActionResult Add() => NoContent();
     }
 }

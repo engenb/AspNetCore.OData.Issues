@@ -13,9 +13,11 @@ namespace Issue697.Infrastructure.OData
 
             foo.HasMany(x => x.Bars);
 
-            var bulkFoosFunc = foo.Collection.Function("Bulk")
-                .ReturnsFromEntitySet<Foo>("Foos");
-            bulkFoosFunc.Namespace = nameof(Foo);
+foo.Collection.Function("Bulk")
+    .ReturnsFromEntitySet<Foo>("Foos");
+
+//foo.Function("Add")
+//    .ReturnsFromEntitySet<Foo>("Foos");
 
             foo.HasKey(x => x.Id)
                 .Count()
@@ -29,9 +31,11 @@ namespace Issue697.Infrastructure.OData
 
             bar.HasOptional(x => x.Foo);
 
-            var bulkBarsFunc = bar.Collection.Function("Bulk")
+            bar.Collection.Function("Bulk")
                 .ReturnsFromEntitySet<Bar>("Bars");
-            bulkBarsFunc.Namespace = nameof(Bar);
+
+            //bar.Function("Add")
+            //    .ReturnsFromEntitySet<Bar>("Bars");
 
             bar.HasKey(x => x.Id)
                 .Count()

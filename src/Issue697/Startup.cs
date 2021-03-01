@@ -14,14 +14,17 @@ namespace Issue697
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureOptions<ApiConfigurator>();
+            services
+                .ConfigureOptions<ApiConfigurator>()
+                .ConfigureOptions<SwaggerConfigurator>();
 
             services
                 .AddHttpContextAccessor()
                 .AddResponseCompression()
                 .AddRouting()
                 .AddApiVersioning()
-                .AddODataApiExplorer();
+                .AddODataApiExplorer()
+                .AddSwaggerGen(); ;
 
             services
                 .AddOData()
@@ -49,7 +52,9 @@ namespace Issue697
                     .MapVersionedODataRoute(
                         "odata",
                         "issue599/v{version:apiVersion}",
-                        modelBuilder.GetEdmModels()));
+                        modelBuilder.GetEdmModels()))
+                .UseSwagger()
+                .UseSwaggerUI();
         }
     }
 }
